@@ -21,19 +21,13 @@ const recordCollection = {
 
 // Only change code below this line
 function updateRecords(records, id, prop, value) {
-	if(prop != 'tracks' && value) {
+	if (prop !== 'tracks' && value !== "") {
 		records[id][prop] = value;
-	}
-	
-	if(prop == 'tracks' && records[id]['tracks'] == undefined) {
-		records[id][prop] = [];
-	}
-	
-	if(prop == 'tracks' && value) {
+	} else if (prop === "tracks" && records[id].hasOwnProperty("tracks") === false) {
+		records[id][prop] = [value];
+	} else if (prop === "tracks" && value !== "") {
 		records[id][prop].push(value);
-	}
-
-	if(!value) {
+	} else if (value === "") {
 		delete records[id][prop];
 	}
 
@@ -43,7 +37,5 @@ function updateRecords(records, id, prop, value) {
 console.log(updateRecords(recordCollection, 5439, 'artist', 'ABBA'));
 console.log(updateRecords(recordCollection, 5439, "tracks", "Take a Chance on Me"));
 console.log(updateRecords(recordCollection, 2548, "tracks", ""));
-
-const myArray = [];
 
 // Only change code below this line
